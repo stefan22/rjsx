@@ -1,35 +1,243 @@
-.App {
+/* base css */
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+}
+
+.cfx::before {
+  content: "";
+  clear:both;
+  display: table;
+}
+
+.cfx::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.calwrapper {
+margin:0 20px;
+background-color: #f3f3f3;
+}
+
+h1 {
+margin: 15px 0;
+text-align: center;
+letter-spacing: 1px;
+color: olive;
+text-shadow: 0px 8px 4px gainsboro;
+}
+
+p {
+border:1px solid #004d8a;
+background-color:#CDDC39;
+width: 90%;
+height: 150px;
+margin-right: auto;
+margin-left: auto;
+color: #7B1FA2;
+}
+
+.mess {
+display: none;
+}
+
+/* simple responsive framework */
+
+.row {
+width: 100%;
+}
+
+/******* large devices only ********/
+@media screen and (min-width: 1200px) {
+.cal-lg-1,.cal-lg-2,.cal-lg-3,.cal-lg-4,.cal-lg-5,.cal-lg-6,.cal-lg-7,.cal-lg-8,
+.cal-lg-9,.cal-lg-10,.cal-lg-11,.cal-lg-12 {
+  float: left;
+  border:1px solid green;
+  padding:1.25em 0;
+
+}
+.cal-lg-1 {
+  width: 8.33%;
+}
+.cal-lg-2 {
+  width: 16.66%;
+}
+.cal-lg-3 {
+  width: 25%;
+}
+.cal-lg-4 {
+  width: 33%;
+}
+.cal-lg-5 {
+  width: 41.66%;
+}
+.cal-lg-6 {
+  width: 50%;
+}
+.cal-lg-7 {
+  width: 58.33%;
+}
+.cal-lg-8 {
+  width: 66.66%;
+}
+.cal-lg-9 {
+  width: 74.99%;
+}
+.cal-lg-10 {
+  width: 83.33%;
+}
+.cal-lg-11 {
+  width: 91.06%;
+}
+.cal-lg-12 {
+  width: 100%;
+}
+
+.mess {
+  display: block;
+}
+
+.mess::after {
+  content: "Large Screens";
+  width: 99.15%;
   text-align: center;
+  border: 1px solid #fff;
+  display: block;
+  background: white;
+  padding: 10px 0;
+  margin-top: 30px;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 50px;
+}/* endof large */
+
+/******* medium devices only ********/
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+.cal-md-1,.cal-md-2,.cal-md-3,.cal-md-4,.cal-md-5,.cal-md-6,.cal-md-7,.cal-md-8,
+.cal-md-9,.cal-md-10,.cal-md-11,.cal-md-12 {
+  float: left;
+  border:1px solid green;
+  padding: 1.25em 0;
+}
+.cal-md-1 {
+  width: 8.33%;
+}
+.cal-md-2 {
+  width: 16.66%;
+}
+.cal-md-3 {
+  width: 25%;
+}
+.cal-md-4 {
+  width: 33%;
+}
+.cal-md-5 {
+  width: 41.66%;
+}
+.cal-md-6 {
+  width: 50%;
+}
+.cal-md-7 {
+  width: 58.33%;
+}
+.cal-md-8 {
+  width: 66.66%;
+}
+.cal-md-9 {
+  width: 74.99%;
+}
+.cal-md-10 {
+  width: 83.33%;
+}
+.cal-md-11 {
+  width: 91.06%;
+}
+.cal-md-12 {
+  width: 100%;
 }
 
-.App-header {
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(0, 0, 0);
+.mess {
+  display: block;
 }
 
-.App-header p {
-  margin: 10px -0;
+.mess::after {
+  content: "Medium Screens";
+  width: 99.5%;
+  text-align: center;
+  border: 1px solid #fff;
+  display: block;
+  background: white;
+  padding: 10px 0;
+  margin-top: 30px;
+
 }
 
-.App-link {
-  color: #61dafb;
+
+}/* endof medium */
+
+
+/******* small devices only ********/
+@media screen and (max-width: 991px) {
+.cal-sm-1,.cal-sm-2,.cal-sm-3,.cal-sm-4,.cal-sm-5,.cal-sm-6,.cal-sm-7,.cal-sm-8,
+.cal-sm-9,.cal-sm-10,.cal-sm-11,.cal-sm-12 {
+  float: left;
+  border:1px solid green;
+  padding: 1.25em 0;
+}
+.cal-sm-1 {
+  width: 8.33%;
+}
+.cal-sm-2 {
+  width: 16.66%;
+}
+.cal-sm-3 {
+  width: 25%;
+}
+.cal-sm-4 {
+  width: 33%;
+}
+.cal-sm-5 {
+  width: 41.66%;
+}
+.cal-sm-6 {
+  width: 50%;
+}
+.cal-sm-7 {
+  width: 58.33%;
+}
+.cal-sm-8 {
+  width: 66.66%;
+}
+.cal-sm-9 {
+  width: 74.99%;
+}
+.cal-sm-10 {
+  width: 83.33%;
+}
+.cal-sm-11 {
+  width: 91.06%;
+}
+.cal-sm-12 {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mess {
+  display: block;
 }
+
+.mess::after {
+  content: "Small Screens";
+  width: 99.5%;
+  text-align: center;
+  border: 1px solid #fff;
+  display: block;
+  background: white;
+  padding: 10px 0;
+  margin-top: 30px;
+
+}
+
+}/* endof small*/
