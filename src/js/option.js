@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
+import '../scss/options.scss';
 
 class Option extends Component {
   render() {
+    console.log(this);
     return (
       <div>
-        <p>Option Component</p>
+        <div className="optionItm">
+          {this.props.optX}
+        </div>
+
+
       </div>
     );
   }

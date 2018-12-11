@@ -1,22 +1,26 @@
 import React, {Component} from 'react';
+import Option from './option';
 import '../scss/options.scss';
 
 class Options extends Component {
 
-  optionsArr() {
-    let arr = this.props.options;
-    arr = arr.map((itm,i) => {
-      return <div className='optionItm' key={i} optkey={i}>{itm.charAt(0).toUpperCase() + itm.slice(1)}</div>;
-    });
-    return arr;
-  }
-
   render() {
-    console.log(this.optionsArr());
+    console.log(this);
     return (
 
       <div className="all-options">
-        {this.optionsArr()}
+
+        {
+          this.props.options.map((itm,key) => {
+            return <Option key={key} optX={ <div optkey={key}>{itm}</div>  } />;
+
+          })
+        }
+
+
+
+
+
       </div>
 
     );
