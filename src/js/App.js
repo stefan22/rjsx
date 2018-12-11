@@ -4,6 +4,7 @@ import Header from './header';
 import Options from './options';
 //import Option from './option';
 import '../scss/app.scss';
+import AddOption from './add-option';
 
 class App extends Component {
   render() {
@@ -18,7 +19,7 @@ class App extends Component {
 
         <Options options={options} />
 
-
+        <AddOption />
 
 
       </div>

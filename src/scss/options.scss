@@ -6,3 +6,26 @@
 .all-options {
   margin:20px 0 40px;
 }
+
+
+input#todo {
+  padding: 10px 20px;
+  margin: 0 20px;
+}
+
+
+button[type=submit], button[type=button] {
+  padding: 10px 20px;
+  background: darkgray;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.question-wrap {
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 4px;
+  background: #FFCA28 !important;
+  margin-top: 2em;
+}

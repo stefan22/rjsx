@@ -5,7 +5,6 @@ import '../scss/options.scss';
 class Options extends Component {
 
   render() {
-    console.log(this);
     return (
 
       <div className="all-options">
