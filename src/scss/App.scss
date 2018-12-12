@@ -241,3 +241,52 @@ width: 100%;
 }
 
 }/* endof small*/
+
+
+
+
+
+
+
+
+#board {
+  margin-top:3em;
+  width: 568px;
+  margin:0 auto;
+  display: block;
+}
+
+
+
+.column {
+  display: inline-flex;
+  float: left;
+}
+
+.row {
+  height: 191px;
+  display: inline-flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.row :focus {
+  outline:none;
+}
+
+.row button {
+  background: #CDDC39;
+  padding: 57px;
+  font-size: 50px;
+  height: 186px;
+}
+
+.row button {
+  border: 1px solid #babbae;
+}
+
+.row button:hover {
+  border: 1px solid #121212;
+  cursor: pointer;
+
+}

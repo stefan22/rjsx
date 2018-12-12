@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import '../scss/options.scss';
 
 class Action extends Component {
+  constructor(props) {
+    super(props);
+    this.handleQuestion = this.handleQuestion.bind(this);
+  }
 
   handleQuestion() {
     console.log('questions handler clicked');
