@@ -22,20 +22,19 @@ class AddOption extends Component {
   render() {
 
     return (
-      <div>
-        {/* {this.props.option}  key: {this.props.option.props.optkey} */}
-
-        <form onSubmit={this.handleNewTodoOption}>
+      <div className='add-option-sitter'>
+        <form id="todo-form"
+          onSubmit={this.handleNewTodoOption}>
           <label htmlFor="todo">Add a todo:</label>
-          <input type="text" name="todo" id="todo" placeholder="enter todo" />
+          <input className='add-todo' type="text" name="todo"
+            placeholder="enter todo"/>
           <button type="submit">Add Item</button>
         </form>
-
       </div>
     );
   }
 
-} //Header
+} //AddOption
 
 
 
