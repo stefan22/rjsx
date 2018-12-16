@@ -22,23 +22,6 @@ margin:0 20px;
 background-color: #f3f3f3;
 }
 
-h1 {
-margin: 15px 0;
-text-align: center;
-letter-spacing: 1px;
-color: olive;
-text-shadow: 0px 8px 4px gainsboro;
-}
-
-p {
-border:1px solid #004d8a;
-background-color:#CDDC39;
-width: 90%;
-height: 150px;
-margin-right: auto;
-margin-left: auto;
-color: #7B1FA2;
-}
 
 .mess {
 display: none;
@@ -247,46 +230,53 @@ width: 100%;
 
 
 
+/******* app-todo ********/
 
-
-#board {
-  margin-top:3em;
-  width: 568px;
-  margin:0 auto;
-  display: block;
+h1,h2,h3 {
+  text-align: center;
+  color:#424242;
 }
 
+.app-comp p, .header-comp p, .action-comp p, .options-comp p, .option-comp p, .addoption-comp p {
+  color: #607d8b;
 
-
-.column {
-  display: inline-flex;
-  float: left;
 }
 
-.row {
-  height: 191px;
-  display: inline-flex;
-  flex-flow: row;
-  justify-content: space-between;
+.header-comp, .action-comp, .options-comp, .option-comp, .addoption-comp {
+background-color: #f0f0f0;
+
+  width: 90%;
+  padding: 10px;
+  height: 150px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.row :focus {
-  outline:none;
+h1 {
+  margin: 15px 0;
+  text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 0px 3px 2px #dddbdb;
+  color: lightsteelblue;
 }
 
-.row button {
-  background: #CDDC39;
-  padding: 57px;
-  font-size: 50px;
-  height: 186px;
+p {
+  color: #7B1FA2;
 }
 
-.row button {
-  border: 1px solid #babbae;
-}
-
-.row button:hover {
-  border: 1px solid #121212;
+.action-button {
+  padding: 10px 20px;
   cursor: pointer;
+}
 
+dt,dd {
+  display: inline-block;
+}
+
+dt {
+  width:20px;
+}
+
+dd {
+  width:200px;
 }
