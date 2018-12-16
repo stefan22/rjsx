@@ -5,10 +5,8 @@ import App from './js/app';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />,
-
   document.getElementById('root')
 );
-
 
 
 
