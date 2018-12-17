@@ -2,110 +2,173 @@ import React, {Component} from 'react';
 import '../scss/app.scss';
 
 class App extends Component {
-  constructor(props) {
+  constructor(props,options,random) {
     super(props);
+    this.options = options;
+    this.random = random;
     this.state = {
-      options: ['oranges','bananas','grapes']
+      options: [
+        'milk','grapes','bread','tomatoes','berries','honey','toothpast'
+      ],
+      random: random || '<< random Todo options available >>'
     };
-
+    this.handleRandomTodo = this.handleRandomTodo.bind(this);
+    this.handleAddTodo = this.handleAddTodo.bind(this);
   }
 
+  handleRandomTodo() {
+    let oplen = this.state.options.length -1;
+    let ran = Math.floor(Math.random() * oplen);
+    this.setState((prevState) => {
+      return {
+        random: prevState.options[ran]
+      };
+    });
+  }
+
+  handleAddTodo(atd) {
+    console.log('passing: ',atd);
+    this.setState((itm) => {
+      return {
+        options: this.state.options.concat(atd)
+      };
+    });
+  }
+
+
   render() {
-    //console.log(this);
-    let title='App isTop Component';
     return (
       <div className='app-comp'>
-        <h1>{title}</h1>
-        <hr className='divider' />
+        <h1>App component</h1>
 
-        <Header />
 
-        <Action />
+        <Header  />
+
+        <Action handleRandomTodo={this.handleRandomTodo}
+          random={this.state.random}
+          options={this.state.options}
+        />
 
         <Options options={this.state.options} />
 
+        <AddOption handleAddTodo={this.handleAddTodo} />
 
 
-        <AddOption />
+
+
+
+
+
+
+
       </div>
     );
   }
-}
+
+} //App
 
 
 class Header extends Component {
   render() {
-    let subtitle='Adding an item to a todo list';
     return (
       <div className='header-comp'>
-        <h3>{subtitle}</h3>
-        <p>Header Component</p>
+        <h2>TodoList</h2>
+        <h3>Add a Todo To Do</h3>
       </div>
     );
   }
-}
+} //Header
 
 
 class Action extends Component {
+  constructor(props) {
+    super(props);
+    this.handleRandomTodo = this.handleRandomTodo.bind(this);
+  }
 
-  handleRandom() {
-    console.log('random');
+  handleRandomTodo() {
+    this.props.handleRandomTodo();
   }
 
   render() {
-    //console.log(this);
+    let randomText='<< Your Todo list is empty, enter a few things first. >>';
     return (
-
       <div className='action-comp'>
-        <p>Use button to add a random todo.</p>
-        <button onClick={this.handleRandom} className='action-button'>
-           Add a Random Item
+        <div className='randomdo'>
+          <div>
+            {
+              (this.props.options.length > 0) ? this.props.random : randomText
+            }
+          </div>
+        </div>
+        <button onClick={this.handleRandomTodo}
+          className='action-button'>
+          Are you ready for a random Todo?
         </button>
       </div>
     );
   }
-}
-
+} //Action
 
 
 class Options extends Component {
   render() {
-    console.log(this);
+    let options = this.props.options;
     return (
-      <div className='options-comp'>
-        <ul>
+      <div className='options-comp ovflw'>
+        <h3>Options</h3>
+        <div className='options cfx'>
           {
-            this.props.options.map((itm,index) => {
-              return (
-                <Option key={index} opkey={index} option={itm}  />
-              );
+            options.map((itm,index) => {
+              return <Option key={index} itmkey={index} itm={itm} />;
             })
           }
-        </ul>
+        </div>
+
       </div>
     );
   }
-}
+} //Options
 
 
 class Option extends Component {
   render() {
-    console.log(this);
     return (
-      <li key={this.props.opkey}>{this.props.option}</li>
-    );
-  }
-}
-
-class AddOption extends Component {
-  render() {
-    return (
-      <div className='addoption-comp'>
-        <p>AddOption Component</p>
+      <div className='option-comp'>
+        {this.props.itm}
       </div>
     );
   }
-}
+} //Option
+
+
+class AddOption extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+  }
+
+  handleAddOption(e) {
+    e.preventDefault();
+    let adop = e.target.children[0].value;
+    this.props.handleAddTodo(adop);
+  }
+  render() {
+    console.log(this);
+    return (
+      <div className='addoption-comp'>
+        <h3>Add Todo</h3>
+        <form onSubmitCapture={this.handleAddOption}>
+          <input type='text' className='add-todo'
+            placeholder='enter a Todo to do' />
+          <button type="submit" className='todo-button'>Add a Todo</button>
+        </form>
+
+      </div>
+    );
+  }
+} //AddOption
+
 
 
 
