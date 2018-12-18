@@ -1,0 +1,35 @@
+.todo-button {
+  padding: 12px 20px;
+  background: #03A9F4;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.todo-delete-button {
+  padding: 7px 12px;
+  margin-left: 10px;
+  background: #e02929;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+}
+
+.action-button {
+  cursor: pointer;
+  background: #2983ca;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px auto 10px;
+  width: 100%;
+  display: block;
+  padding: 20px 0;
+}
+
+button:focus {outline: none;}

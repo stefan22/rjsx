@@ -1,167 +1,69 @@
-/* base css */
-* {
-  box-sizing: border-box;
-  margin:0;
-  padding: 0;
+@import './base';
+
+/******* Header comp ********/
+
+.header-comp {
+    h2 {
+        margin: 15px 0;
+    }
+    h3 {
+        margin: 10px 0;
+    }
 }
 
-.cfx::before {
-  content: "";
-  clear:both;
-  display: table;
-}
 
-.cfx::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/******* app-todo ********/
-.header-comp, .action-comp, .options-comp, .option-comp, .addoption-comp {
-  background-color: #f0f0f0;
-  padding: 10px 20px;
-  height: 150px;
-  margin-right: auto;
-  margin-left: auto;
-  border-bottom: 2px solid white;
-}
-.app-comp p, .header-comp p, .action-comp p, .options-comp p, .option-comp p, .addoption-comp p { color: #607d8b;
-}
-
-h1,h2,h3 {
-  text-align: center;
-  color:#6b6b6b;
-}
-
-h1 {
-  margin: 15px 0;
-  text-align: center;
-  letter-spacing: 1px;
-  text-shadow: 0px 3px 2px #dddbdb;
-  color: lightsteelblue;
-}
-
-p {
-  color: #7B1FA2;
-}
-
-.header-comp p {
-  text-align: center;
-}
+/******* Action comp ********/
 
 .action-comp {
-  .randomdo {
-    margin-bottom: 2em;
-    text-align: center;
-  }
-  .action-button {
-    padding: 12px 20px;
-    cursor: pointer;
-    background: #2983ca;
-    color: white;
-    font-size: 16px;
-    font-weight: 400;
-    margin: 0 auto;
-    width: 45%;
-    display: block;
-    margin-bottom: 22px;
-    height: 44px;
-  }
-
+    .randomdo {
+        margin: 0;
+        text-align: center;
+        padding: 20px 0;
+    }
 }
+
+
+/******* Options comp ********/
 
 .options-comp {
-  &.ovflw {
-    overflow: auto;
-    height: auto;
-  }
-
-
+    &.ovflw {
+        overflow: auto;
+        height: auto;
+    }
+    h3 {
+        margin: 10px 0;
+    }
+    .options {
+        margin: 2em 0;
+    }
 }
 
 
-
-
-
-
-
-button:focus {outline: none;}
-
-
-
-
-
-
-
-
-span {
-  display: inline-block;
-  margin:1em;
-  padding: 10px;
-  height: 38px;
-}
-
-
-
-.addoption-comp h3 {
-  margin-bottom: 2em;
-}
-
-.addoption-comp form {
-  display: block;
-  margin: 0 auto;
-  width: 45%;
-}
-
-.options {
-  margin: 2em 0;
-}
-
-.options-comp li {
-  list-style-type: lower-alpha;
-}
-.option-item {
-  margin-right:5px;
-}
+/******* Option comp ********/
 
 .option-comp {
-  height: auto;
+    height: auto;
+    .todo {
+        line-height: 33px;
+    }
 }
 
-span {
-  padding: 8px 10px;
-  height: 33px;
-  float: left;
-  margin: 0;
-}
 
-.todo {
-  line-height: 33px;
-}
+/******* AddOption comp ********/
 
-.add-todo {
-  padding: 10px 40px;
-  font-size: 14px;
-}
-
-.todo-button {
-  padding: 10px;
-  margin-left: 10px;
-  background: #03A9F4;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.todo-delete-button {
-  padding: 7px 12px;
-  margin-left: 10px;
-  background: #e02929;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  float: right;
-  cursor: pointer;
+.addoption-comp {
+    h3 {
+        margin: 10px 0;
+    }
+    form {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        .add-todo {
+            padding: 10px 20px;
+            width: 100%;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+    }
 }

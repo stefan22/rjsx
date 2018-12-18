@@ -34,7 +34,6 @@ class App extends Component {
   }
 
   removeTodo(rem) {
-    console.log('remove Todo in app');
     this.state.options.splice(rem,1); // => arr[1]
     this.setState(() => {
       return {
@@ -45,22 +44,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className='app-comp'>
-        <h1>App component</h1>
+      <div className="calwrapper cfx">
+        <div className='app-comp'>
+          <h1>App component</h1>
+          <p className='blk'></p>
 
-        <Header  />
+          <Header  />
 
-        <Action handleRandomTodo={this.handleRandomTodo}
-          random={this.state.random}
-          options={this.state.options}
-        />
+          <Action handleRandomTodo={this.handleRandomTodo}
+            random={this.state.random}
+            options={this.state.options}
+          />
 
-        <Options
-          removeTodo={this.removeTodo}
-          options={this.state.options} />
+          <Options
+            removeTodo={this.removeTodo}
+            options={this.state.options} />
 
-        <AddOption handleAddTodo={this.handleAddTodo} />
+          <AddOption handleAddTodo={this.handleAddTodo} />
 
+        </div>
       </div>
     );
   }
