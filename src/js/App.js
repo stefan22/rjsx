@@ -7,17 +7,16 @@ class App extends Component {
     this.options = options;
     this.random = random;
     this.state = {
-      options: [
-        'milk','grapes','bread','tomatoes','berries','honey','toothpast'
-      ],
+      options: ['oranges','bananas','apples','cereal','milk'],
       random: random || '<< random Todo options available >>'
     };
     this.handleRandomTodo = this.handleRandomTodo.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
   }
 
   handleRandomTodo() {
-    let oplen = this.state.options.length -1;
+    let oplen = this.state.options.length;
     let ran = Math.floor(Math.random() * oplen);
     this.setState((prevState) => {
       return {
@@ -34,12 +33,20 @@ class App extends Component {
     });
   }
 
+  removeTodo(rem) {
+    console.log('remove Todo in app');
+    this.state.options.splice(rem,1); // => arr[1]
+    this.setState(() => {
+      return {
+        options: this.state.options
+      };
+    });
+  }
 
   render() {
     return (
       <div className='app-comp'>
         <h1>App component</h1>
-
 
         <Header  />
 
@@ -48,17 +55,11 @@ class App extends Component {
           options={this.state.options}
         />
 
-        <Options options={this.state.options} />
+        <Options
+          removeTodo={this.removeTodo}
+          options={this.state.options} />
 
         <AddOption handleAddTodo={this.handleAddTodo} />
-
-
-
-
-
-
-
-
 
       </div>
     );
@@ -111,15 +112,28 @@ class Action extends Component {
 
 
 class Options extends Component {
+  constructor(props) {
+    super(props);
+    this.removeTodo = this.removeTodo.bind(this);
+    this.state = {
+      options:this.props.options
+    };
+  }
+
+  removeTodo(itm) {
+    this.props.removeTodo(itm);
+  }
+
   render() {
-    let options = this.props.options;
     return (
       <div className='options-comp ovflw'>
         <h3>Options</h3>
         <div className='options cfx'>
           {
-            options.map((itm,index) => {
-              return <Option key={index} itmkey={index} itm={itm} />;
+            this.props.options.map((itm,index) => {
+              return <Option
+                removeTodo={this.removeTodo}
+                key={index} itmkey={index} itm={itm} />;
             })
           }
         </div>
@@ -136,23 +150,23 @@ class Option extends Component {
     this.removeTodo = this.removeTodo.bind(this);
   }
 
-  removeTodo(e) {
-    console.dir(e.target);
-    let ele = e.target.parentElement;
-    ele.parentElement.removeChild(ele);
+  removeTodo() {
+    return this.props.removeTodo(this.props.itmkey);
 
-    console.log('remove todo');
   }
 
   render() {
-    console.log(this);
     return (
       <div className='option-comp cfx'>
-        <span>{this.props.itmkey}. {this.props.itm}</span>
-        <button
-          className='todo-delete-button'
-          onClick={this.removeTodo}>Delete Todo
-        </button>
+        <div className='todo' key={this.props.itmkey}>
+          {this.props.itmkey}. {this.props.itm}
+          <button
+            className='todo-delete-button'
+            onClick={this.removeTodo}>Delete Todo
+          </button>
+        </div>
+
+
       </div>
     );
   }
