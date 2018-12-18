@@ -131,10 +131,28 @@ class Options extends Component {
 
 
 class Option extends Component {
+  constructor(props) {
+    super(props);
+    this.removeTodo = this.removeTodo.bind(this);
+  }
+
+  removeTodo(e) {
+    console.dir(e.target);
+    let ele = e.target.parentElement;
+    ele.parentElement.removeChild(ele);
+
+    console.log('remove todo');
+  }
+
   render() {
+    console.log(this);
     return (
-      <div className='option-comp'>
-        {this.props.itm}
+      <div className='option-comp cfx'>
+        <span>{this.props.itmkey}. {this.props.itm}</span>
+        <button
+          className='todo-delete-button'
+          onClick={this.removeTodo}>Delete Todo
+        </button>
       </div>
     );
   }
@@ -156,7 +174,6 @@ class AddOption extends Component {
     }
   }
   render() {
-    console.log(this);
     return (
       <div className='addoption-comp'>
         <h3>Add Todo</h3>

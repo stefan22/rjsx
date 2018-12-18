@@ -130,6 +130,13 @@ span {
   height: auto;
 }
 
+span {
+  padding: 8px 10px;
+  height: 33px;
+  float: left;
+  margin: 0;
+}
+
 .add-todo {
   padding: 10px 40px;
   font-size: 14px;
@@ -142,5 +149,16 @@ span {
   color: white;
   font-size: 14px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.todo-delete-button {
+  padding: 7px 12px;
+  margin-left: 10px;
+  background: #e02929;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
   cursor: pointer;
 }
