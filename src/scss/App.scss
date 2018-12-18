@@ -17,237 +17,9 @@
   display: table;
 }
 
-.calwrapper {
-margin:0 20px;
-background-color: #f3f3f3;
-}
-
-
-.mess {
-display: none;
-}
-
-/* simple responsive framework */
-
-.row {
-width: 100%;
-}
-
-/******* large devices only ********/
-@media screen and (min-width: 1200px) {
-.cal-lg-1,.cal-lg-2,.cal-lg-3,.cal-lg-4,.cal-lg-5,.cal-lg-6,.cal-lg-7,.cal-lg-8,
-.cal-lg-9,.cal-lg-10,.cal-lg-11,.cal-lg-12 {
-  float: left;
-  border:1px solid green;
-  padding:1.25em 0;
-
-}
-.cal-lg-1 {
-  width: 8.33%;
-}
-.cal-lg-2 {
-  width: 16.66%;
-}
-.cal-lg-3 {
-  width: 25%;
-}
-.cal-lg-4 {
-  width: 33%;
-}
-.cal-lg-5 {
-  width: 41.66%;
-}
-.cal-lg-6 {
-  width: 50%;
-}
-.cal-lg-7 {
-  width: 58.33%;
-}
-.cal-lg-8 {
-  width: 66.66%;
-}
-.cal-lg-9 {
-  width: 74.99%;
-}
-.cal-lg-10 {
-  width: 83.33%;
-}
-.cal-lg-11 {
-  width: 91.06%;
-}
-.cal-lg-12 {
-  width: 100%;
-}
-
-.mess {
-  display: block;
-}
-
-.mess::after {
-  content: "Large Screens";
-  width: 99.15%;
-  text-align: center;
-  border: 1px solid #fff;
-  display: block;
-  background: white;
-  padding: 10px 0;
-  margin-top: 30px;
-
-}
-
-}/* endof large */
-
-/******* medium devices only ********/
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-.cal-md-1,.cal-md-2,.cal-md-3,.cal-md-4,.cal-md-5,.cal-md-6,.cal-md-7,.cal-md-8,
-.cal-md-9,.cal-md-10,.cal-md-11,.cal-md-12 {
-  float: left;
-  border:1px solid green;
-  padding: 1.25em 0;
-}
-.cal-md-1 {
-  width: 8.33%;
-}
-.cal-md-2 {
-  width: 16.66%;
-}
-.cal-md-3 {
-  width: 25%;
-}
-.cal-md-4 {
-  width: 33%;
-}
-.cal-md-5 {
-  width: 41.66%;
-}
-.cal-md-6 {
-  width: 50%;
-}
-.cal-md-7 {
-  width: 58.33%;
-}
-.cal-md-8 {
-  width: 66.66%;
-}
-.cal-md-9 {
-  width: 74.99%;
-}
-.cal-md-10 {
-  width: 83.33%;
-}
-.cal-md-11 {
-  width: 91.06%;
-}
-.cal-md-12 {
-  width: 100%;
-}
-
-.mess {
-  display: block;
-}
-
-.mess::after {
-  content: "Medium Screens";
-  width: 99.5%;
-  text-align: center;
-  border: 1px solid #fff;
-  display: block;
-  background: white;
-  padding: 10px 0;
-  margin-top: 30px;
-
-}
-
-
-}/* endof medium */
-
-
-/******* small devices only ********/
-@media screen and (max-width: 991px) {
-.cal-sm-1,.cal-sm-2,.cal-sm-3,.cal-sm-4,.cal-sm-5,.cal-sm-6,.cal-sm-7,.cal-sm-8,
-.cal-sm-9,.cal-sm-10,.cal-sm-11,.cal-sm-12 {
-  float: left;
-  border:1px solid green;
-  padding: 1.25em 0;
-}
-.cal-sm-1 {
-  width: 8.33%;
-}
-.cal-sm-2 {
-  width: 16.66%;
-}
-.cal-sm-3 {
-  width: 25%;
-}
-.cal-sm-4 {
-  width: 33%;
-}
-.cal-sm-5 {
-  width: 41.66%;
-}
-.cal-sm-6 {
-  width: 50%;
-}
-.cal-sm-7 {
-  width: 58.33%;
-}
-.cal-sm-8 {
-  width: 66.66%;
-}
-.cal-sm-9 {
-  width: 74.99%;
-}
-.cal-sm-10 {
-  width: 83.33%;
-}
-.cal-sm-11 {
-  width: 91.06%;
-}
-.cal-sm-12 {
-  width: 100%;
-}
-
-.mess {
-  display: block;
-}
-
-.mess::after {
-  content: "Small Screens";
-  width: 99.5%;
-  text-align: center;
-  border: 1px solid #fff;
-  display: block;
-  background: white;
-  padding: 10px 0;
-  margin-top: 30px;
-
-}
-
-}/* endof small*/
-
-
-
-
-
-
 /******* app-todo ********/
-
-h1,h2,h3 {
-  text-align: center;
-  color:#6b6b6b;
-}
-.header-comp p {
-  text-align: center;
-}
-
-.app-comp p, .header-comp p, .action-comp p, .options-comp p, .option-comp p, .addoption-comp p {
-  color: #607d8b;
-
-}
-
 .header-comp, .action-comp, .options-comp, .option-comp, .addoption-comp {
-background-color: #f0f0f0;
-
+  background-color: #f0f0f0;
   width: 90%;
   padding: 10px;
   height: 150px;
@@ -255,8 +27,13 @@ background-color: #f0f0f0;
   margin-left: auto;
   border-bottom: 2px solid white;
 }
+.app-comp p, .header-comp p, .action-comp p, .options-comp p, .option-comp p, .addoption-comp p { color: #607d8b;
+}
 
-
+h1,h2,h3 {
+  text-align: center;
+  color:#6b6b6b;
+}
 
 h1 {
   margin: 15px 0;
@@ -270,43 +47,54 @@ p {
   color: #7B1FA2;
 }
 
+.header-comp p {
+  text-align: center;
+}
+
+.action-comp {
+  .randomdo {
+    margin-bottom: 2em;
+    text-align: center;
+  }
+  .action-button {
+    padding: 12px 20px;
+    cursor: pointer;
+    background: #2983ca;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 auto;
+    width: 45%;
+    display: block;
+    margin-bottom: 22px;
+    height: 44px;
+  }
+
+}
+
+.options-comp {
+  &.ovflw {
+    overflow: auto;
+    height: auto;
+  }
+
+
+}
+
+
+
+
+
+
+
 button:focus {outline: none;}
 
-.action-comp ul {
-  margin: 15px 0 15px 0;
-}
 
-.action-comp li {
-  text-align: center;
-  list-style: none;
-}
 
-.action-button {
-  padding: 12px 20px;
-  cursor: pointer;
-  background: #2983ca;
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
-  margin: 0 auto;
-  width: 45%;
-  display: block;
-  margin-bottom: 22px;
-  height: 44px;
-}
 
-.random-action {
-  width: 75%;
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  overflow: auto;
-}
 
-.randomdo {
-  margin-bottom: 2em;
-  text-align: center;
-}
+
+
 
 span {
   display: inline-block;
@@ -315,10 +103,7 @@ span {
   height: 38px;
 }
 
-.options-comp.ovflw {
-  overflow: auto;
-  height: auto;
-}
+
 
 .addoption-comp h3 {
   margin-bottom: 2em;

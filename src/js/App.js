@@ -27,8 +27,7 @@ class App extends Component {
   }
 
   handleAddTodo(atd) {
-    console.log('passing: ',atd);
-    this.setState((itm) => {
+    this.setState(() => {
       return {
         options: this.state.options.concat(atd)
       };
@@ -150,8 +149,11 @@ class AddOption extends Component {
 
   handleAddOption(e) {
     e.preventDefault();
-    let adop = e.target.children[0].value;
-    this.props.handleAddTodo(adop);
+    let adop = e.target.children[0].value.trim();
+    if(adop !== '') {
+      this.props.handleAddTodo(adop);
+      document.forms[0].querySelector('.add-todo').value = '';
+    }
   }
   render() {
     console.log(this);
