@@ -9,6 +9,26 @@
     h3 {
         margin: 10px 0;
     }
+    .def-values, .load-list {
+      width: 49%;
+      display: inline-block;
+      text-align: center;
+      span {
+          &.center {
+          font-size: .8em;
+          max-width: 90%;
+          display: block;
+          text-align: center;
+          margin: 0 auto;
+        }
+      }
+    }
+    .def-values {
+      margin-right:5px;
+    }
+
+
+
 }
 
 

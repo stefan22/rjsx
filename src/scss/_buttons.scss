@@ -32,4 +32,24 @@
   padding: 20px 0;
 }
 
+.def-values button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background: #d62825;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.load-list button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background: mediumseagreen;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1em;
+}
+
 button:focus {outline: none;}
