@@ -13,6 +13,36 @@ class App extends Component {
     this.handleRandomTodo = this.handleRandomTodo.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
+    this.handleTodoList = this.handleTodoList.bind(this);
+    this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
+  }
+
+  handleTodoList() {
+    console.log('handle todo list');
+  }
+
+  handleDeleteDefaults() {
+    let defval = ['oranges','bananas','apples'];
+    let options = this.state.options;
+    const ckopt = (opt) => {
+      for(var i=0; i<options.length; i++) {
+        if(typeof options[i] == 'string' &&
+        options[i].toLowerCase().endsWith(opt)) {
+          console.log(options[i]);
+          options.splice(options[i],1);
+        }
+      }
+      this.setState(() => {
+        return {
+          options: options
+        };
+      });
+    };
+    defval.forEach((val) => {
+      ckopt(val);
+    });
+
+
   }
 
   handleRandomTodo() {
@@ -44,13 +74,17 @@ class App extends Component {
 
   render() {
     let subtitle='Add a Todo To Do';
+    console.log(this);
     return (
       <div className="calwrapper cfx">
         <div className='app-comp'>
           <h1>App component</h1>
           <p className='blk'></p>
 
-          <Header subtitle={subtitle}  />
+          <Header
+            handleDeleteDefaults={this.handleDeleteDefaults}
+            handleRandomTodo={this.handleRandomTodo}
+          />
 
           <Action handleRandomTodo={this.handleRandomTodo}
             random={this.state.random}
@@ -76,17 +110,35 @@ App.defaultProps = {
 
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.handleTodoList = this.handleTodoList.bind(this);
+    this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
+  }
+
+  handleTodoList() {
+    console.log('handle todo list');
+  }
+
+  handleDeleteDefaults() {
+    this.props.handleDeleteDefaults();
+
+  }
+
   render() {
+    console.log(this);
     return (
       <div className='header-comp'>
-        <h2>{this.props.title}</h2>
-        {this.props.subtitle && <h3>Add a Todo To Do</h3>}
+        <h2>Todo App</h2>
+        <h3>Add a Todo To Do</h3>
         <div className='def-values'>
-          <button>Delete Default Values</button>
+          <button onClick={this.handleDeleteDefaults}>
+            Delete Default Values
+          </button>
           <span className='center'>Deletes the 3 original default values</span>
         </div>
         <div className='load-list'>
-          <button>Load Your Todo list</button>
+          <button onClick={this.handleTodoList}>Load Your Todo list</button>
           <span className='center'>Loads your list from Local storage</span>
         </div>
       </div>
@@ -94,9 +146,7 @@ class Header extends Component {
   }
 };
 
-Header.defaultProps ={
-  title: 'Todo App'
-};
+
 
 
 class Action extends Component {
@@ -134,9 +184,6 @@ class Options extends Component {
   constructor(props) {
     super(props);
     this.removeTodo = this.removeTodo.bind(this);
-    this.state = {
-      options:this.props.options
-    };
   }
 
   removeTodo(itm) {
@@ -144,6 +191,7 @@ class Options extends Component {
   }
 
   render() {
+    console.log(this);
     return (
       <div className='options-comp ovflw'>
         <h3>Options</h3>
@@ -207,11 +255,11 @@ class AddOption extends Component {
     }
   }
   render() {
-    console.log(this);
+
     return (
       <div className='addoption-comp'>
         <h3>Add Todo</h3>
-        {this.props.subtitle && <h3>Add your Todo below</h3>}
+        <h3>Add your To Do Below</h3>
         <form onSubmitCapture={this.handleAddOption}>
           <input type='text' className='add-todo'
             placeholder='enter a Todo to do' />
