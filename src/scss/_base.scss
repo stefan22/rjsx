@@ -1,41 +1,16 @@
-@import './font-size';
-@import './buttons';
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.cfx::before {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.cfx::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.calwrapper {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 100%;
-}
-
-
+@import './primitive';
 /******* app-todo ********/
-
+.app-comp {
+	width: 100;
+}
 .header-comp,
 .action-comp,
 .options-comp,
 .option-comp,
 .addoption-comp {
-    background-color: #f0f0f0;
-    padding: 10px 20px;
-    border-bottom: 2px solid white;
+	background-color: #f0f0f0;
+	padding: 10px 20px;
+	border-bottom: 2px solid white;
 }
 
 .app-comp p,
@@ -44,24 +19,37 @@
 .options-comp p,
 .option-comp p,
 .addoption-comp p {
-    color: #607d8b;
+	color: #607d8b;
 }
 
 h1,
 h2,
 h3 {
-    text-align: center;
-    color: #6b6b6b;
+	text-align: center;
+	color: #6b6b6b;
 }
 
 h1 {
-    margin: 15px 0;
-    text-align: center;
-    letter-spacing: 1px;
-    text-shadow: 0px 3px 2px #dddbdb;
-    color: lightsteelblue;
+	margin: 15px 0;
+	text-align: center;
+	letter-spacing: 1px;
+	color: lightsteelblue;
 }
 
 p {
-    color: #7B1FA2;
+	color: #7b1fa2;
 }
+
+
+.todo-delete-button {
+    padding: 7px 12px;
+    margin-left: 10px;
+    background: #e02929;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+  }
+
+  button:focus {outline: none;}
