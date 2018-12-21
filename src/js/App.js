@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import '../scss/app.scss';
+import '../scss/App.scss';
 
 class App extends Component {
-  constructor(props,options,random) {
+  constructor(props, options, random) {
     super(props);
     this.options = options;
     this.random = random;
     this.state = {
-      options: props.options,
-      random: random || '<< random Todo options available >>'
+      options: this.props.options,
+      random: random || 'Random Todo options available'
     };
     this.handleRandomTodo = this.handleRandomTodo.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
@@ -19,19 +19,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    localStorage.setItem('options',this.state.options);
+    localStorage.setItem('options', this.state.options);
   }
 
   componentWillUpdate(nextProps, nextState) {
     let store = localStorage.getItem('options');
-    let arrStore =  store.split(',');
-    if(nextState.options.length !== arrStore.length) {
+    let arrStore = store.split(',');
+    if (nextState.options.length !== arrStore.length) {
       localStorage.setItem('options', nextState.options);
-      //console.log(localStorage.getItem('options'));
     }
-
   }
-
 
   handleTodoList() {
     let store = localStorage.getItem('options');
@@ -39,26 +36,21 @@ class App extends Component {
   }
 
   handleDeleteDefaults() {
-    let defval = ['oranges','bananas','apples'];
+    const def = [ 'apples', 'oranges', 'bananas' ];
     let options = this.state.options;
-    const ckopt = (opt) => {
-      for(var i=0; i<options.length; i++) {
-        if(typeof options[i] == 'string' &&
-        options[i].toLowerCase().endsWith(opt)) {
-          options.splice(options[i],1);
+    def.forEach((d, i) =>
+      options.forEach((o, idx) => {
+        if (String(o) === String(d)) {
+          options.splice(idx, 1);
+          this.setState(() => {
+            return {
+              options: options
+            };
+          });
         }
-      }
-      this.setState(() => {
-        return {
-          options: options
-        };
-      });
-    };
-    defval.forEach((val) => {
-      ckopt(val);
-    });
+      })
+    );
   }
-
 
   handleRandomTodo() {
     let oplen = this.state.options.length;
@@ -79,7 +71,7 @@ class App extends Component {
   }
 
   removeTodo(rem) {
-    this.state.options.splice(rem,1); // => arr[1]
+    this.state.options.splice(rem, 1); // => arr[1]
     this.setState(() => {
       return {
         options: this.state.options
@@ -90,16 +82,14 @@ class App extends Component {
   resetH3() {
     let list = document.getElementById('todolist');
     list.innerHTML = '<h3>Add a Todo To Do</h3>';
-
   }
 
   render() {
-    let subtitle='Add a Todo To Do';
+    let subtitle = 'Add a Todo To Do';
     return (
-      <div className="calwrapper cfx">
-        <div className='app-comp'>
-          <h1>App component</h1>
-          <p className='blk'></p>
+      <div className="container small-container calwrapper cfx">
+        <div className="app-comp flex-large flex-small">
+          <h1 className="black">App component</h1>
 
           <Header
             resetH3={this.resetH3}
@@ -115,26 +105,18 @@ class App extends Component {
             options={this.state.options}
           />
 
-          <Options
-            resetH3={this.resetH3}
-            removeTodo={this.removeTodo}
-            options={this.state.options} />
+          <Options resetH3={this.resetH3} removeTodo={this.removeTodo} options={this.state.options} />
 
-          <AddOption
-            resetH3={this.resetH3}
-            handleAddTodo={this.handleAddTodo} subtitle={subtitle} />
-
+          <AddOption resetH3={this.resetH3} handleAddTodo={this.handleAddTodo} subtitle={subtitle} />
         </div>
       </div>
     );
   }
-
 } //App
 
 App.defaultProps = {
-  options: ['oranges','bananas','apples']
+  options: [ 'apples', 'oranges', 'bananas' ]
 };
-
 
 class Header extends Component {
   constructor(props) {
@@ -146,39 +128,41 @@ class Header extends Component {
   handleTodoList() {
     let store = this.props.handleTodoList();
     let list = document.getElementById('todolist');
-    list.innerHTML = `<h3> ${store} </h3>`;
+    list.innerHTML = `<h3> ${store.length > 0 ? store : 'Your list is Empty!'} </h3>`;
   }
 
   handleDeleteDefaults() {
     this.props.handleDeleteDefaults();
     this.props.resetH3();
-
   }
 
   render() {
     return (
-      <div className='header-comp'>
-        <h2>Todo App</h2>
-        <div id='todolist'>
-          <h3>Add a Todo To Do</h3>
+      <div className="header-comp flex-large flex-small">
+        <h2 className="text-center">Todo App</h2>
+        <div id="todolist">
+          <h3 className="text-center">Add a Todo To Do Below</h3>
         </div>
-        <div className='def-values'>
-          <button onClick={this.handleDeleteDefaults}>
-            Delete Default Values
-          </button>
-          <span className='center'>Deletes the 3 original default values</span>
+        <div className="content-section">
+          <div className="block margin-top text-center">
+            <button className="full-button accent-button" onClick={this.handleTodoList}>
+							Load Your Todo list
+            </button>
+            <h4 className="block margin-top">Loads your list from Local storage</h4>
+          </div>
         </div>
-        <div className='load-list'>
-          <button onClick={this.handleTodoList}>Load Your Todo list</button>
-          <span className='center'>Loads your list from Local storage</span>
+        <div className="content-section">
+          <div className="block margin-top text-center">
+            <button className="full-button" onClick={this.handleDeleteDefaults}>
+							Delete Default Values
+            </button>
+            <h4 className="block margin-top">Deletes the 3 original default values</h4>
+          </div>
         </div>
       </div>
     );
   }
-};
-
-
-
+}
 
 class Action extends Component {
   constructor(props) {
@@ -192,25 +176,22 @@ class Action extends Component {
   }
 
   render() {
-    let randomText='<< Your Todo list is empty, enter a few things first. >>';
+    let randomText = 'Your Todo list is empty, enter a few things first.';
     return (
-      <div className='action-comp'>
-        <div className='randomdo'>
-          <div>
-            {
-              (this.props.options.length > 0) ? this.props.random : randomText
-            }
+      <div className="action-comp flex-large flex-small">
+        <div className="content-section">
+          <div className="random text-center">
+            {this.props.options.length > 0 ? <h4>{this.props.random}</h4> : <h4>{randomText}</h4>}
           </div>
+
+          <button onClick={this.handleRandomTodo} className="button full-button action-button">
+						Are you ready for a random Todo?
+          </button>
         </div>
-        <button onClick={this.handleRandomTodo}
-          className='action-button'>
-          Are you ready for a random Todo?
-        </button>
       </div>
     );
   }
 } //Action
-
 
 class Options extends Component {
   constructor(props) {
@@ -225,23 +206,19 @@ class Options extends Component {
 
   render() {
     return (
-      <div className='options-comp ovflw'>
+      <div className="options-comp ovflw flex-large flex-small">
         <h3>Options</h3>
-        <div className='options cfx'>
-          {
-            this.props.options.map((itm,index) => {
-              return <Option
-                removeTodo={this.removeTodo}
-                key={index} itmkey={index} itm={itm} />;
-            })
-          }
+        <div className="content-section">
+          <div className="options cfx">
+            {this.props.options.map((itm, index) => {
+              return <Option removeTodo={this.removeTodo} key={index} itmkey={index} itm={itm} />;
+            })}
+          </div>
         </div>
-
       </div>
     );
   }
 } //Options
-
 
 class Option extends Component {
   constructor(props) {
@@ -251,26 +228,21 @@ class Option extends Component {
 
   removeTodo() {
     return this.props.removeTodo(this.props.itmkey);
-
   }
 
   render() {
     return (
-      <div className='option-comp cfx'>
-        <div className='todo' key={this.props.itmkey}>
+      <div className="option-comp cfx flex-large flex-small">
+        <div className="todo" key={this.props.itmkey}>
           {this.props.itmkey}. {this.props.itm}
-          <button
-            className='todo-delete-button'
-            onClick={this.removeTodo}>Delete Todo
+          <button className="button .square-button red todo-delete-button" onClick={this.removeTodo}>
+						Delete Todo
           </button>
         </div>
-
-
       </div>
     );
   }
 } //Option
-
 
 class AddOption extends Component {
   constructor(props) {
@@ -281,33 +253,28 @@ class AddOption extends Component {
   handleAddOption(e) {
     e.preventDefault();
     let adop = e.target.children[0].value.trim();
-    if(adop !== '') {
+    if (adop !== '') {
       this.props.handleAddTodo(adop);
       document.forms[0].querySelector('.add-todo').value = '';
     }
     this.props.resetH3();
   }
   render() {
-
     return (
-      <div className='addoption-comp'>
+      <div className="addoption-comp flex-large flex-small">
         <h3>Add Todo</h3>
         <h3>Add your To Do Below</h3>
-        <form onSubmitCapture={this.handleAddOption}>
-          <input type='text' className='add-todo'
-            placeholder='enter a Todo to do' />
-          <button type="submit" className='todo-button'>Add a Todo</button>
-        </form>
-
+        <div className="content-section">
+          <form onSubmitCapture={this.handleAddOption}>
+            <input type="text" className="add-todo" placeholder="enter a Todo to do" />
+            <button type="submit" className="full-button">
+							Add a Todo
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
 } //AddOption
-
-
-
-
-
-
 
 export default App;
