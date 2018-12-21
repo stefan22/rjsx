@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import '../scss/App.scss';
 
 class App extends Component {
+
   constructor(props, options, random) {
-    super(props);
+    super(props,options,random);
     this.options = options;
     this.random = random;
     this.state = {
@@ -15,6 +16,7 @@ class App extends Component {
     this.removeTodo = this.removeTodo.bind(this);
     this.handleTodoList = this.handleTodoList.bind(this);
     this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
+    this.handleDeleteAll = this.handleDeleteAll.bind(this);
     this.resetH3 = this.resetH3.bind(this);
   }
 
@@ -50,6 +52,12 @@ class App extends Component {
         }
       })
     );
+  }
+
+  handleDeleteAll() {
+    this.setState(() => ({
+      options: []
+    }));
   }
 
   handleRandomTodo() {
@@ -95,6 +103,7 @@ class App extends Component {
             resetH3={this.resetH3}
             handleTodoList={this.handleTodoList}
             handleDeleteDefaults={this.handleDeleteDefaults}
+            handleDeleteAll={this.handleDeleteAll}
             handleRandomTodo={this.handleRandomTodo}
           />
 
@@ -123,6 +132,7 @@ class Header extends Component {
     super(props);
     this.handleTodoList = this.handleTodoList.bind(this);
     this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
+    this.handleDeleteAll = this.handleDeleteAll.bind(this);
   }
 
   handleTodoList() {
@@ -136,7 +146,13 @@ class Header extends Component {
     this.props.resetH3();
   }
 
+  handleDeleteAll() {
+    this.props.handleDeleteAll();
+    this.props.resetH3();
+  }
+
   render() {
+    console.log(this);
     return (
       <div className="header-comp flex-large flex-small">
         <h2 className="text-center">Todo App</h2>
@@ -153,10 +169,22 @@ class Header extends Component {
         </div>
         <div className="content-section">
           <div className="block margin-top text-center">
-            <button className="full-button" onClick={this.handleDeleteDefaults}>
+            <button
+              className="full-button"
+              onClick={this.handleDeleteDefaults}>
 							Delete Default Values
             </button>
             <h4 className="block margin-top">Deletes the 3 original default values</h4>
+          </div>
+        </div>
+        <div className="content-section">
+          <div className="block margin-top text-center">
+            <button
+              className="full-button accent-button"
+              onClick={this.handleDeleteAll}>
+							Delete All Options
+            </button>
+            <h4 className="block margin-top">New Todo list - Remove all existing options.</h4>
           </div>
         </div>
       </div>
