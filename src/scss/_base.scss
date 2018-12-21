@@ -1,7 +1,7 @@
 @import './primitive';
 /******* app-todo ********/
 .app-comp {
-	width: 100;
+	width: 100%;
 }
 .header-comp,
 .action-comp,
@@ -41,15 +41,15 @@ p {
 }
 
 
-.todo-delete-button {
-    padding: 7px 12px;
-    margin-left: 10px;
-    background: #e02929;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    float: right;
-    cursor: pointer;
-  }
+// .todo-delete-button {
+//     padding: 7px 12px;
+//     margin-left: 10px;
+//     background: #e02929;
+//     color: white;
+//     font-size: 14px;
+//     font-weight: bold;
+//     float: right;
+//     cursor: pointer;
+//   }
 
   button:focus {outline: none;}

@@ -3,14 +3,8 @@ import '../scss/App.scss';
 
 class App extends Component {
 
-  constructor(props, options, random) {
-    super(props,options,random);
-    this.options = options;
-    this.random = random;
-    this.state = {
-      options: this.props.options,
-      random: random || 'Random Todo options available'
-    };
+  constructor(props) {
+    super(props);
     this.handleRandomTodo = this.handleRandomTodo.bind(this);
     this.handleAddTodo = this.handleAddTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
@@ -18,10 +12,18 @@ class App extends Component {
     this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
     this.handleDeleteAll = this.handleDeleteAll.bind(this);
     this.resetH3 = this.resetH3.bind(this);
+    this.state = {
+      options: props.options,
+      random: 'Random Todo options available'
+    };
+
   }
 
   componentDidMount() {
-    localStorage.setItem('options', this.state.options);
+    localStorage.setItem('options', this.props.options);
+    this.setState(() => ({
+      options: this.props.options
+    }));
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -32,6 +34,10 @@ class App extends Component {
     }
   }
 
+  componentWillUnmount() {
+    console.log('component wil unmount');
+  }
+
   handleTodoList() {
     let store = localStorage.getItem('options');
     return store;
@@ -39,7 +45,7 @@ class App extends Component {
 
   handleDeleteDefaults() {
     const def = [ 'apples', 'oranges', 'bananas' ];
-    let options = this.state.options;
+    let options = this.props.options;
     def.forEach((d, i) =>
       options.forEach((o, idx) => {
         if (String(o) === String(d)) {
@@ -96,7 +102,7 @@ class App extends Component {
     let subtitle = 'Add a Todo To Do';
     return (
       <div className="container small-container calwrapper cfx">
-        <div className="app-comp flex-large flex-small">
+        <div className="app-comp flex-small">
           <h1 className="black">App component</h1>
 
           <Header
@@ -132,7 +138,6 @@ class Header extends Component {
     super(props);
     this.handleTodoList = this.handleTodoList.bind(this);
     this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
-    this.handleDeleteAll = this.handleDeleteAll.bind(this);
   }
 
   handleTodoList() {
@@ -146,15 +151,9 @@ class Header extends Component {
     this.props.resetH3();
   }
 
-  handleDeleteAll() {
-    this.props.handleDeleteAll();
-    this.props.resetH3();
-  }
-
   render() {
-    console.log(this);
     return (
-      <div className="header-comp flex-large flex-small">
+      <div className="header-comp flex-small">
         <h2 className="text-center">Todo App</h2>
         <div id="todolist">
           <h3 className="text-center">Add a Todo To Do Below</h3>
@@ -181,7 +180,7 @@ class Header extends Component {
           <div className="block margin-top text-center">
             <button
               className="full-button accent-button"
-              onClick={this.handleDeleteAll}>
+              onClick={this.props.handleDeleteAll}>
 							Delete All Options
             </button>
             <h4 className="block margin-top">New Todo list - Remove all existing options.</h4>
@@ -206,7 +205,7 @@ class Action extends Component {
   render() {
     let randomText = 'Your Todo list is empty, enter a few things first.';
     return (
-      <div className="action-comp flex-large flex-small">
+      <div className="action-comp flex-small">
         <div className="content-section">
           <div className="random text-center">
             {this.props.options.length > 0 ? <h4>{this.props.random}</h4> : <h4>{randomText}</h4>}
@@ -234,7 +233,7 @@ class Options extends Component {
 
   render() {
     return (
-      <div className="options-comp ovflw flex-large flex-small">
+      <div className="options-comp ovflw flex-small">
         <h3>Options</h3>
         <div className="content-section">
           <div className="options cfx">
@@ -260,10 +259,10 @@ class Option extends Component {
 
   render() {
     return (
-      <div className="option-comp cfx flex-large flex-small">
+      <div className="option-comp cfx flex-small">
         <div className="todo" key={this.props.itmkey}>
           {this.props.itmkey}. {this.props.itm}
-          <button className="button .square-button red todo-delete-button" onClick={this.removeTodo}>
+          <button className="button .square-button red-button" onClick={this.removeTodo}>
 						Delete Todo
           </button>
         </div>
@@ -289,7 +288,7 @@ class AddOption extends Component {
   }
   render() {
     return (
-      <div className="addoption-comp flex-large flex-small">
+      <div className="addoption-comp flex-small">
         <h3>Add Todo</h3>
         <h3>Add your To Do Below</h3>
         <div className="content-section">
