@@ -8,8 +8,9 @@ class OptionModal extends Component {
   constructor(props) {
     super(props);
 
+
     this.openModal = this.openModal.bind(this);
-    // this.afterOpenModal = this.afterOpenModal.bind(this);
+    //this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -18,9 +19,6 @@ class OptionModal extends Component {
 
   }
 
-  // afterOpenModal() {
-  //   this.subtitle.style.color = '#f00';
-  // }
 
   closeModal() {
     this.props.closeModal();
@@ -31,10 +29,8 @@ class OptionModal extends Component {
     return (
       <div>
         <Modal className='selected-option'
-          isOpen={this.props.selectedOption}
-          //onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Selected Option"
+          isOpen={this.props.isOpen}
+          contentLabel={this.props.contentLabel}
         >
           <h3>Your Random option is:</h3>
           <h3 className='is-selected'>{this.props.selectedOption}</h3>

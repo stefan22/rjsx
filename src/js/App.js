@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import TopBar from './top-bar';
 import OptionModal from './option-modal';
 import '../scss/App.scss';
+//import { Modal } from '@material-ui/core';
+import Modal from 'react-modal';
 
 class App extends Component {
 
@@ -18,10 +20,14 @@ class App extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.state = {
       options: props.options,
-      random: 'Random Todo options available',
       selectedOption: undefined,
+      isOpen: false,
     };
 
+  }
+
+  componentWillMount() {
+    Modal.setAppElement('body');
   }
 
   componentDidMount() {
@@ -72,7 +78,6 @@ class App extends Component {
   }
 
   handleRandomTodo() {
-    this.openModal();
     let oplen = this.state.options.length;
     let ran = Math.floor(Math.random() * oplen);
     this.setState((prevState) => {
@@ -80,7 +85,7 @@ class App extends Component {
         selectedOption: prevState.options[ran]
       };
     });
-
+    this.openModal();
   }
 
   handleAddTodo(atd) {
@@ -107,18 +112,19 @@ class App extends Component {
 
   openModal() {
     this.setState(() => ({
-      selectedOption: !!undefined
+      isOpen: true
     }));
   }
 
   closeModal() {
     this.setState(() => ({
-      selectedOption: undefined
+      isOpen: false
     }));
   }
 
   render() {
     let subtitle = 'Add a Todo To Do';
+    let contentLabel = 'Selected option';
     return (
       <div className="container small-container calwrapper cfx">
         <div className="app-comp flex-large">
@@ -134,7 +140,6 @@ class App extends Component {
           <Action
             handleRandomTodo={this.handleRandomTodo}
             resetH3={this.resetH3}
-            random={this.state.random}
             options={this.state.options}
           />
 
@@ -146,6 +151,8 @@ class App extends Component {
             selectedOption={this.state.selectedOption}
             openModal={this.openModal}
             closeModal={this.closeModal}
+            isOpen={this.state.isOpen}
+            contentLabel={contentLabel}
 
           />
         </div>
@@ -229,11 +236,12 @@ class Action extends Component {
 
   render() {
     let randomText = 'Your Todo list is empty, enter a few things first.';
+    let randomAvail = 'Random Todo options available';
     return (
       <div className="action-comp flex-large">
         <div className="content-section">
           <div className="random text-center">
-            {this.props.options.length > 0 ? <h4>{this.props.random}</h4> : <h4>{randomText}</h4>}
+            {this.props.options.length > 0 ? <h4>{randomAvail}</h4> : <h4>{randomText}</h4>}
           </div>
 
           <button onClick={this.handleRandomTodo} className="button full-button action-button">
