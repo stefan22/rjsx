@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TopBar from './top-bar';
 import '../scss/App.scss';
 
 class App extends Component {
@@ -102,9 +103,8 @@ class App extends Component {
     let subtitle = 'Add a Todo To Do';
     return (
       <div className="container small-container calwrapper cfx">
-        <div className="app-comp flex-small">
-          <h1 className="black">App component</h1>
-
+        <div className="app-comp flex-large">
+          <TopBar />
           <Header
             resetH3={this.resetH3}
             handleTodoList={this.handleTodoList}
@@ -153,7 +153,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div className="header-comp flex-small">
+      <div className="header-comp flex-large">
         <h2 className="text-center">Todo App</h2>
         <div id="todolist">
           <h3 className="text-center">Add a Todo To Do Below</h3>
@@ -205,7 +205,7 @@ class Action extends Component {
   render() {
     let randomText = 'Your Todo list is empty, enter a few things first.';
     return (
-      <div className="action-comp flex-small">
+      <div className="action-comp flex-large">
         <div className="content-section">
           <div className="random text-center">
             {this.props.options.length > 0 ? <h4>{this.props.random}</h4> : <h4>{randomText}</h4>}
@@ -233,10 +233,10 @@ class Options extends Component {
 
   render() {
     return (
-      <div className="options-comp ovflw flex-small">
+      <div className="options-comp flex-large">
         <h3>Options</h3>
         <div className="content-section">
-          <div className="options cfx">
+          <div className="options">
             {this.props.options.map((itm, index) => {
               return <Option removeTodo={this.removeTodo} key={index} itmkey={index} itm={itm} />;
             })}
@@ -259,7 +259,7 @@ class Option extends Component {
 
   render() {
     return (
-      <div className="option-comp cfx flex-small">
+      <div className="option-comp clearfix flex-large">
         <div className="todo" key={this.props.itmkey}>
           {this.props.itmkey}. {this.props.itm}
           <button className="button .square-button red-button" onClick={this.removeTodo}>
@@ -288,7 +288,7 @@ class AddOption extends Component {
   }
   render() {
     return (
-      <div className="addoption-comp flex-small">
+      <div className="addoption-comp flex-large">
         <h3>Add Todo</h3>
         <h3>Add your To Do Below</h3>
         <div className="content-section">

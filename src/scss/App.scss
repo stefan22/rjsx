@@ -70,7 +70,7 @@
 .option-comp {
 	height: auto;
 	.todo {
-		line-height: 33px;
+		line-height: 42px;
 	}
 }
 
@@ -121,8 +121,9 @@ h3 {
 
 .red-button {
   background-color: #cc271f;
-    border: 1px solid #b50505;
-    float: right;
+  border: 1px solid #b50505;
+  float: right;
+  margin:0;
 }
 .red-button:hover {
   background-color:#af150c;
