@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TopBar from './top-bar';
+import OptionModal from './option-modal';
 import '../scss/App.scss';
 
 class App extends Component {
@@ -13,9 +14,12 @@ class App extends Component {
     this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
     this.handleDeleteAll = this.handleDeleteAll.bind(this);
     this.resetH3 = this.resetH3.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.state = {
       options: props.options,
-      random: 'Random Todo options available'
+      random: 'Random Todo options available',
+      selectedOption: undefined,
     };
 
   }
@@ -68,13 +72,15 @@ class App extends Component {
   }
 
   handleRandomTodo() {
+    this.openModal();
     let oplen = this.state.options.length;
     let ran = Math.floor(Math.random() * oplen);
     this.setState((prevState) => {
       return {
-        random: prevState.options[ran]
+        selectedOption: prevState.options[ran]
       };
     });
+
   }
 
   handleAddTodo(atd) {
@@ -97,6 +103,18 @@ class App extends Component {
   resetH3() {
     let list = document.getElementById('todolist');
     list.innerHTML = '<h3>Add a Todo To Do</h3>';
+  }
+
+  openModal() {
+    this.setState(() => ({
+      selectedOption: !!undefined
+    }));
+  }
+
+  closeModal() {
+    this.setState(() => ({
+      selectedOption: undefined
+    }));
   }
 
   render() {
@@ -123,6 +141,13 @@ class App extends Component {
           <Options resetH3={this.resetH3} removeTodo={this.removeTodo} options={this.state.options} />
 
           <AddOption resetH3={this.resetH3} handleAddTodo={this.handleAddTodo} subtitle={subtitle} />
+
+          <OptionModal
+            selectedOption={this.state.selectedOption}
+            openModal={this.openModal}
+            closeModal={this.closeModal}
+
+          />
         </div>
       </div>
     );

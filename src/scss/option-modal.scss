@@ -1,0 +1,58 @@
+body.ReactModal__Body--open {
+  background-color:#000000;
+  div#root {
+    background-color:#000000;
+  }
+  .selected-option {
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    border: 1px solid #bdbdbd;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width:50%;
+    h3 {
+      margin:0;
+      line-height: 40px;
+      &.is-selected {
+        margin:20px 0;
+        text-align: center;
+        color: green;
+      }
+    }
+    p {
+      margin:20px 0 0;
+      color:#424242;
+    }
+    button {
+      &.close-modal {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: forestgreen;
+        border: #162e08;
+      }
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+}
+
