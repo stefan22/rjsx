@@ -2,30 +2,22 @@ import React, {Component} from 'react';
 import Modal from 'react-modal';
 import '../scss/option-modal.scss';
 
-//Modal.setAppElement('#root .options');
-
 class OptionModal extends Component {
   constructor(props) {
     super(props);
-
-
     this.openModal = this.openModal.bind(this);
-    //this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   openModal() {
     this.props.openModal();
-
   }
-
 
   closeModal() {
     this.props.closeModal();
   }
 
   render() {
-    console.log(this);
     return (
       <div>
         <Modal className='selected-option'
@@ -39,8 +31,6 @@ class OptionModal extends Component {
             onClick={this.closeModal}>close
           </button>
           <p className='text-center'>Good luck with your option. Press the close button to continue.</p>
-
-
         </Modal>
       </div>
     );
