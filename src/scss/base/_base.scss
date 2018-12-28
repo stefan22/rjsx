@@ -1,0 +1,93 @@
+@import './grid';
+@import './helpers';
+
+
+/* base  rem(16*.625 =10) 2.2rem = 22px
+   ========================================================================== */
+
+   * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 62.5%;
+
+  }
+
+  body {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    margin:0;
+    background: #fff;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  ol,ul,li {
+    list-style: none;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    text-align: center;
+    margin: 0 0 2rem;
+    font-weight: 400;
+    color: #404040;
+  }
+
+  h1 {font-size: 2.5rem;line-height: 50px;}
+  h2 {font-size: 2.2rem;line-height: 44px;}
+  h3 {font-size: 2rem;line-height: 40px;}
+  h4 {font-size: 1.7rem;line-height: 34px;}
+  h5 {font-size: 1.5rem; line-height: 30px;}
+  h6 {font-size:1.25rem; line-height: 25px;}
+
+  .clearfix::before, .clearfix::after {
+     content: " ";
+     display: block;
+  } .clearfix:after {
+     clear: both;
+  }
+
+  a {
+    color: #0366EE;
+    text-decoration: none;
+    outline: none;
+  }
+
+  a:hover {
+    color: #0246a2;
+    text-decoration: underline;
+  }
+
+
+  /******* app-todo ********/
+  .app-comp {
+    width: 100%;
+  }
+  .header-comp,
+  .action-comp,
+  .options-comp,
+  .option-comp,
+  .addoption-comp  {
+    background-color: #f0f0f0;
+    padding: 10px 0px;
+  }
+
+.option-comp {
+  background-color: #f0f0f0;
+  padding: 10px 0px;
+  border-bottom: 2px solid white;
+}
+
+.content-section {
+  border-bottom: 2px solid white;
+}
+
+.addoption-comp .content-section, .options-comp .content-section {
+  border-bottom: none;
+}
+

@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import Modal from 'react-modal';
 import OptionModal from './option-modal';
+import LoadTodos from './load-todos';
 import TopBar from './top-bar';
 import Header from './header';
+import Action from './action';
+import Options from './options';
+import AddOption from './add-option';
 
 import '../scss/App.scss';
 
@@ -15,13 +19,12 @@ class App extends Component {
     this.handleTodoList = this.handleTodoList.bind(this);
     this.handleDeleteDefaults = this.handleDeleteDefaults.bind(this);
     this.handleDeleteAll = this.handleDeleteAll.bind(this);
-    this.resetH3 = this.resetH3.bind(this);
-    this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleClosingLoadTodos = this.handleClosingLoadTodos.bind(this);
     this.state = {
       options: props.options,
       selectedOption: undefined,
-      isOpen: false,
+      loadtodos: undefined
     };
 
   }
@@ -51,7 +54,9 @@ class App extends Component {
 
   handleTodoList() {
     let store = localStorage.getItem('options');
-    return store;
+    this.setState(() => ({
+      loadtodos: store
+    }));
   }
 
   handleDeleteDefaults() {
@@ -78,14 +83,11 @@ class App extends Component {
   }
 
   handleRandomTodo() {
-    let oplen = this.state.options.length;
-    let ran = Math.floor(Math.random() * oplen);
-    this.setState((prevState) => {
-      return {
-        selectedOption: prevState.options[ran]
-      };
-    });
-    this.openModal();
+    let ran = Math.floor(Math.random() * this.state.options.length);
+    let option = this.state.options[ran];
+    this.setState(() => ({
+        selectedOption: option
+    }));
   }
 
   handleAddTodo(atd) {
@@ -105,55 +107,53 @@ class App extends Component {
     });
   }
 
-  resetH3() {
-    let list = document.getElementById('todolist');
-    list.innerHTML = '<h3>Add a Todo To Do</h3>';
-  }
-
-  openModal() {
+  closeModal() {
     this.setState(() => ({
-      isOpen: true
+      selectedOption: undefined
     }));
   }
 
-  closeModal() {
+  handleClosingLoadTodos() {
     this.setState(() => ({
-      isOpen: false
+      loadtodos: undefined
     }));
   }
 
   render() {
     let subtitle = 'Add a Todo To Do';
-    let contentLabel = 'Selected option';
     return (
-      <div className="container small-container calwrapper cfx">
+      <div className="container">
         <div className="app-comp flex-large">
           <TopBar />
           <Header
-            resetH3={this.resetH3}
             handleTodoList={this.handleTodoList}
             handleDeleteDefaults={this.handleDeleteDefaults}
             handleDeleteAll={this.handleDeleteAll}
             handleRandomTodo={this.handleRandomTodo}
+            options={this.state.options}
           />
 
           <Action
             handleRandomTodo={this.handleRandomTodo}
-            resetH3={this.resetH3}
             options={this.state.options}
           />
 
-          <Options resetH3={this.resetH3} removeTodo={this.removeTodo} options={this.state.options} />
+          <Options
+            removeTodo={this.removeTodo}
+            options={this.state.options} />
 
-          <AddOption resetH3={this.resetH3} handleAddTodo={this.handleAddTodo} subtitle={subtitle} />
+          <AddOption
+            handleAddTodo={this.handleAddTodo}
+            subtitle={subtitle} />
 
           <OptionModal
             selectedOption={this.state.selectedOption}
-            openModal={this.openModal}
             closeModal={this.closeModal}
-            isOpen={this.state.isOpen}
-            contentLabel={contentLabel}
+          />
 
+          <LoadTodos
+            loadtodos={this.state.loadtodos}
+            handleClosingLoadTodos={this.handleClosingLoadTodos}
           />
         </div>
       </div>
@@ -166,120 +166,6 @@ App.defaultProps = {
   options: [ 'apples', 'oranges', 'bananas' ]
 };
 
-
-class Action extends Component {
-  constructor(props) {
-    super(props);
-    this.handleRandomTodo = this.handleRandomTodo.bind(this);
-  }
-
-  handleRandomTodo() {
-    this.props.handleRandomTodo();
-    this.props.resetH3();
-  }
-
-  render() {
-    let randomText = 'Your Todo list is empty, enter a few things first.';
-    let randomAvail = 'Random Todo options available';
-    return (
-      <div className="action-comp flex-large">
-        <div className="content-section">
-          <div className="random text-center">
-            {this.props.options.length > 0 ? <h4>{randomAvail}</h4> : <h4>{randomText}</h4>}
-          </div>
-
-          <button onClick={this.handleRandomTodo} className="button full-button action-button">
-						Are you ready for a random Todo?
-          </button>
-        </div>
-      </div>
-    );
-  }
-} //Action
-
-class Options extends Component {
-  constructor(props) {
-    super(props);
-    this.removeTodo = this.removeTodo.bind(this);
-  }
-
-  removeTodo(itm) {
-    this.props.removeTodo(itm);
-    this.props.resetH3();
-  }
-
-  render() {
-    return (
-      <div className="options-comp flex-large">
-        <h3>Options</h3>
-        <div className="content-section">
-          <div className="options">
-            {this.props.options.map((itm, index) => {
-              return <Option removeTodo={this.removeTodo} key={index} itmkey={index} itm={itm} />;
-            })}
-          </div>
-        </div>
-      </div>
-    );
-  }
-} //Options
-
-class Option extends Component {
-  constructor(props) {
-    super(props);
-    this.removeTodo = this.removeTodo.bind(this);
-  }
-
-  removeTodo() {
-    return this.props.removeTodo(this.props.itmkey);
-  }
-
-  render() {
-    return (
-      <div className="option-comp clearfix flex-large">
-        <div className="todo" key={this.props.itmkey}>
-          {this.props.itmkey}. {this.props.itm}
-          <button className="button .square-button red-button" onClick={this.removeTodo}>
-						Delete Todo
-          </button>
-        </div>
-      </div>
-    );
-  }
-} //Option
-
-class AddOption extends Component {
-  constructor(props) {
-    super(props);
-    this.handleAddOption = this.handleAddOption.bind(this);
-  }
-
-  handleAddOption(e) {
-    e.preventDefault();
-    let adop = e.target.children[0].value.trim();
-    if (adop !== '') {
-      this.props.handleAddTodo(adop);
-      document.forms[0].querySelector('.add-todo').value = '';
-    }
-    this.props.resetH3();
-  }
-  render() {
-    return (
-      <div className="addoption-comp flex-large">
-        <h3>Add Todo</h3>
-        <h3>Add your To Do Below</h3>
-        <div className="content-section">
-          <form onSubmitCapture={this.handleAddOption}>
-            <input type="text" className="add-todo" placeholder="enter a Todo to do" />
-            <button type="submit" className="full-button">
-							Add a Todo
-            </button>
-          </form>
-        </div>
-      </div>
-    );
-  }
-} //AddOption
 
 
 export default App;

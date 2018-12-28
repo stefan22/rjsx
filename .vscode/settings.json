@@ -6,6 +6,7 @@
     ".editorConfig": true,
     "package-lock.json": true,
     "src/serviceWorker.js": true,
+    "node_modules": true
   }
 
 }
